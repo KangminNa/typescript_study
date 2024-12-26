@@ -104,6 +104,16 @@ export class HashDictionary {
                 if (keyIndex !== -1) {
                     this._keyList.splice(keyIndex, 1); // 해당 인덱스에서 1개 요소 제거
                 }
+                // for (let i = 0; i < this._keyList.length; i++) {
+                //   if (this._comparer.equals(this._keyList[i], key)) {
+                //     // 삭제 후 배열 정렬
+                //     for (let j = i; j < this._keyList.length - 1; j++) {
+                //       this._keyList[j] = this._keyList[j + 1];
+                //     }
+                //     this._keyList.pop(); // 마지막 요소 제거
+                //     break;
+                //   }
+                // }
                 return true; // 삭제 성공
             }
             currentNode = currentNode.next;
