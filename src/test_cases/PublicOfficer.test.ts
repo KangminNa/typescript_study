@@ -2,8 +2,9 @@ import { Police } from "../generics/models/Police";
 import { Firefighter } from '../generics/models/Firefighter';
 import { Developer } from '../generics/models/Developer';
 import { CentralArchives } from '../generics/services/CentralArchives';
-import { Exractor } from "../generics/services/Exractor";
+
 import { TrainingCenter } from "../generics/services/TrainingCenter";
+import { Extractor } from "../generics/services/Exractor";
 
 describe("PublicOfficer and subclasses", () => {
     afterEach(() => {
@@ -68,7 +69,7 @@ describe("Extractor", () => {
 
         console.log("Registered officers:", CentralArchives.allOfficers);
 
-        const result = Exractor.getOfficersByServiceParity(false);
+        const result = Extractor.getOfficersByServiceParity(false);
         console.log("Extracted odd-year officers:", result);
 
         expect(result).toContain(officer1);
@@ -87,7 +88,7 @@ describe("Extractor", () => {
 
         console.log("Registered officers:", CentralArchives.allOfficers);
 
-        const result = Exractor.getOfficersByServiceParity(true);
+        const result = Extractor.getOfficersByServiceParity(true);
         console.log("Extracted even-year officers:", result);
 
         expect(result).toContain(officer2);
@@ -95,63 +96,70 @@ describe("Extractor", () => {
         expect(result).not.toContain(officer1);
     });
 
-    test("getPoliceList - Police만 추출", () => {
-        const police1 = new Police("John Doe", 5);
-        const firefighter = new Firefighter("Jane Smith", 3);
-        const police2 = new Police("Mike Lee", 7);
-
-        CentralArchives.register(police1);
-        CentralArchives.register(firefighter);
-        CentralArchives.register(police2);
-
-        console.log("Registered officers:", CentralArchives.allOfficers);
-
-        const result = Exractor.getPoliceList();
-        console.log("Extracted police officers:", result);
-
-        expect(result).toContain(police1);
-        expect(result).toContain(police2);
-        expect(result).not.toContain(firefighter);
+    describe("Extractor", () => {
+        beforeEach(() => {
+            // 테스트 전 CentralArchives 초기화
+            CentralArchives.clear();
+        });
+    
+        test("getPoliceList - Police만 추출", () => {
+            const police1 = new Police("John Doe", 5);
+            const firefighter = new Firefighter("Jane Smith", 3);
+            const police2 = new Police("Mike Lee", 7);
+    
+            CentralArchives.register(police1);
+            CentralArchives.register(firefighter);
+            CentralArchives.register(police2);
+    
+            console.log("Registered officers:", CentralArchives.allOfficers);
+    
+            const result = Extractor.getOfficersByType(Police);
+            console.log("Extracted police officers:", result);
+    
+            expect(result).toContain(police1);
+            expect(result).toContain(police2);
+            expect(result).not.toContain(firefighter);
+        });
+    
+        test("getFirefighterList - Firefighter만 추출", () => {
+            const firefighter1 = new Firefighter("Jane Smith", 3);
+            const police = new Police("John Doe", 5);
+            const firefighter2 = new Firefighter("Mike Lee", 7);
+    
+            CentralArchives.register(firefighter1);
+            CentralArchives.register(police);
+            CentralArchives.register(firefighter2);
+    
+            console.log("Registered officers:", CentralArchives.allOfficers);
+    
+            const result = Extractor.getOfficersByType(Firefighter);
+            console.log("Extracted firefighters:", result);
+    
+            expect(result).toContain(firefighter1);
+            expect(result).toContain(firefighter2);
+            expect(result).not.toContain(police);
+        });
+    
+        test("getDeveloperList - Developer만 추출", () => {
+            const developer1 = new Developer("Dev John", 3);
+            const developer2 = new Developer("Dev Jane", 5);
+            const police = new Police("John Doe", 7);
+    
+            CentralArchives.register(developer1);
+            CentralArchives.register(developer2);
+            CentralArchives.register(police);
+    
+            console.log("Registered officers:", CentralArchives.allOfficers);
+    
+            const result = Extractor.getOfficersByType(Developer);
+            console.log("Extracted developers:", result);
+    
+            expect(result).toContain(developer1);
+            expect(result).toContain(developer2);
+            expect(result).not.toContain(police);
+        });
     });
-
-    test("getFirefighterList - Firefighter만 추출", () => {
-        const firefighter1 = new Firefighter("Jane Smith", 3);
-        const police = new Police("John Doe", 5);
-        const firefighter2 = new Firefighter("Mike Lee", 7);
-
-        CentralArchives.register(firefighter1);
-        CentralArchives.register(police);
-        CentralArchives.register(firefighter2);
-
-        console.log("Registered officers:", CentralArchives.allOfficers);
-
-        const result = Exractor.getFirefighterList();
-        console.log("Extracted firefighters:", result);
-
-        expect(result).toContain(firefighter1);
-        expect(result).toContain(firefighter2);
-        expect(result).not.toContain(police);
-    });
-
-    test("getDeveloperList - Developer만 추출", () => {
-        const developer1 = new Developer("Dev John", 3);
-        const developer2 = new Developer("Dev Jane", 5);
-        const police = new Police("John Doe", 7);
-
-        CentralArchives.register(developer1);
-        CentralArchives.register(developer2);
-        CentralArchives.register(police);
-
-        console.log("Registered officers:", CentralArchives.allOfficers);
-
-        const result = Exractor.getDeveloperList();
-        console.log("Extracted developers:", result);
-
-        expect(result).toContain(developer1);
-        expect(result).toContain(developer2);
-        expect(result).not.toContain(police);
-    });
-});
+});  
 
 describe("TrainingCenter", () => {
     afterEach(() => {

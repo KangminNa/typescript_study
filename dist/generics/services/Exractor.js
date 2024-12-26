@@ -1,51 +1,21 @@
-import { Developer } from "../models/Developer";
-import { Firefighter } from "../models/Firefighter";
-import { Police } from "../models/Police";
 import { CentralArchives } from "./CentralArchives";
-export class Exractor {
+export class Extractor {
     constructor() { }
-    ;
-    // 근속년수에 따른 짝수와 홀수에 맞춰서 
+    /**
+     * 근속년수에 따라 짝수 또는 홀수 공무원을 반환
+     * @param isEven 짝수 근속 여부
+     * @returns 조건에 맞는 PublicOfficer 배열
+     */
     static getOfficersByServiceParity(isEven) {
-        const result = [];
-        for (const officer of CentralArchives.allOfficers) {
-            if (isEven && officer.getYearsOfService() % 2 === 0) {
-                result.push(officer);
-            }
-            else if (!isEven && officer.getYearsOfService() % 2 !== 0) {
-                result.push(officer);
-            }
-        }
-        return result;
+        return CentralArchives.allOfficers.filter(officer => isEven ? officer.getYearsOfService() % 2 === 0 : officer.getYearsOfService() % 2 !== 0);
     }
-    static getPoliceList() {
-        // officers 중 Police 추출
-        const result = [];
-        for (const officer of CentralArchives.allOfficers) {
-            if (officer instanceof Police) {
-                result.push(officer);
-            }
-        }
-        return result;
-    }
-    static getFirefighterList() {
-        // officers 중 Firefighter 추출
-        const result = [];
-        for (const officer of CentralArchives.allOfficers) {
-            if (officer instanceof Firefighter) {
-                result.push(officer);
-            }
-        }
-        return result;
-    }
-    static getDeveloperList() {
-        const result = [];
-        for (const officer of CentralArchives.allOfficers) {
-            if (officer instanceof Developer) {
-                result.push(officer);
-            }
-        }
-        return result;
+    /**
+     * 특정 타입의 공무원을 필터링하여 반환
+     * @param type 필터링할 타입 (클래스)
+     * @returns 해당 타입의 공무원 배열
+     */
+    static getOfficersByType(type) {
+        return CentralArchives.allOfficers.filter(officer => officer instanceof type);
     }
 }
 //# sourceMappingURL=Exractor.js.map
