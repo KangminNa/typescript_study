@@ -1,0 +1,1 @@
+{"version":3,"file":"Firefighter.js","sourceRoot":"","sources":["../../../src/generics/models/Firefighter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAEhD,MAAM,OAAO,WAAY,SAAQ,aAAa;IACnC,SAAS;QACZ,OAAO,CAAC,GAAG,CAAC,oBAAoB,IAAI,CAAC,IAAI,iBAAiB,IAAI,CAAC,cAAc,SAAS,CAAC,CAAC;IAC5F,CAAC;CACJ"}

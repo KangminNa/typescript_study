@@ -1,0 +1,1 @@
+{"version":3,"file":"Developer.js","sourceRoot":"","sources":["../../../src/generics/models/Developer.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAEhD,MAAM,OAAO,SAAU,SAAQ,aAAa;IACjC,SAAS;QACZ,OAAO,CAAC,GAAG,CAAC,4BAA4B,IAAI,CAAC,IAAI,iBAAiB,IAAI,CAAC,cAAc,SAAS,CAAC,CAAC;IACpG,CAAC;CACJ"}

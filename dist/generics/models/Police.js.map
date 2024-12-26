@@ -1,0 +1,1 @@
+{"version":3,"file":"Police.js","sourceRoot":"","sources":["../../../src/generics/models/Police.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAEhD,MAAM,OAAO,MAAO,SAAQ,aAAa;IAC9B,SAAS;QACZ,OAAO,CAAC,GAAG,CAAC,uBAAuB,IAAI,CAAC,IAAI,iBAAiB,IAAI,CAAC,cAAc,SAAS,CAAC,CAAC;IAC/F,CAAC;CACJ"}

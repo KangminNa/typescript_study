@@ -1,33 +1,25 @@
-import { PublicOfficer } from '../models/PublicOfficer';
-
 export class CentralArchives {
-    
-    private static officers: PublicOfficer[] = [];
-
-    private constructor() {}
-
-    public static clear(): void {
+    static officers = [];
+    constructor() { }
+    static clear() {
         this.officers = [];
     }
-
-    public static get allOfficers(): ReadonlyArray<PublicOfficer> {
+    static get allOfficers() {
         // officers 반환
-        return this.officers as ReadonlyArray<PublicOfficer>;
+        return this.officers;
     }
-
-    public static register(officer: PublicOfficer): void {
+    static register(officer) {
         // 중복 방지 로직 추가
         if (!this.officers.some(o => o.name === officer.name && o.getYearsOfService() === officer.getYearsOfService())) {
             this.officers.push(officer);
         }
     }
-
-    public static remove(officer: PublicOfficer): void {
+    static remove(officer) {
         const index = this.officers.indexOf(officer);
-        if(index > -1){
+        if (index > -1) {
             // officer 제거
             this.officers.splice(index, 1);
         }
     }
-
 }
+//# sourceMappingURL=CentralArchives.js.map
