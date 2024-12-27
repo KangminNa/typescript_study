@@ -1,1 +1,7 @@
 node_modules
+src/coding_test/1st.ts
+src/coding_test/2nd.ts
+src/coding_test/3rd.ts
+src/test_cases/solution1.test.ts
+src/test_cases/solution2.test.ts
+src/test_cases/solution3.test.ts
