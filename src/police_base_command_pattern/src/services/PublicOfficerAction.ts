@@ -71,3 +71,5 @@ export class PublicOfficerAction extends PublicOfficerBaseCommand<
         return new TrainingCenter(dto.name, dto.yearsOfService, 'general');
     }
 }
+export { TrainingCenter };
+
